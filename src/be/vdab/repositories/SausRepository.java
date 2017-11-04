@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import be.vdab.entities.Saus;
 
@@ -20,5 +21,11 @@ public class SausRepository {
 	
 	public List<Saus> findAll(){
 		return new ArrayList<>(SAUZEN.values());
+	}
+	
+	public List<Saus> findByIngrediënt(String ingrediënt){
+		return SAUZEN.values().stream()
+				.filter(saus -> saus.getIngrediënten().stream().anyMatch(ingred -> ingred.equalsIgnoreCase(ingrediënt)))
+				.collect(Collectors.toList());
 	}
 }

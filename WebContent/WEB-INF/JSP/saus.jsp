@@ -8,6 +8,7 @@
 	</c:import>
 </head>
 <body>
+	<c:import url="/WEB-INF/JSP/menu.jsp"/>
 	<h1>Sauzen</h1>
 	<h2>U heeft keuze uit de volgende sauzen:</h2>
 	<ul class="zebra">
