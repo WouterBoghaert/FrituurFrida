@@ -28,4 +28,8 @@ public class SausRepository {
 				.filter(saus -> saus.getIngrediënten().stream().anyMatch(ingred -> ingred.equalsIgnoreCase(ingrediënt)))
 				.collect(Collectors.toList());
 	}
+	
+	public void removeById(long id) {
+		SAUZEN.remove(id);
+	}
 }

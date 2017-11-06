@@ -11,23 +11,27 @@
 	<c:import url="/WEB-INF/JSP/menu.jsp"/>
 	<h1>Sauzen</h1>
 	<h2>U heeft keuze uit de volgende sauzen:</h2>
-	<ul class="zebra">
-	<c:forEach var="saus" items="${sauzen}">
-		<li>${saus.naam}: 		
-			<c:forEach var="ingrediënt" items="${saus.ingrediënten}" varStatus="status">
-				<c:choose>
-					<c:when test="${status.first}">					
-						${ingrediënt}
-					</c:when>
-					<c:otherwise>
-						, ${ingrediënt}
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<br>
-			<img src="images/${saus.naam}.png" alt="${saus.naam}" title="${saus.naam}">
-		</li>	
-	</c:forEach>
-	</ul>
+	<form method="post">
+		<ul class="zebra">
+		<c:forEach var="saus" items="${sauzen}">
+			<li><input type="checkbox" name="id" value="${saus.nummer}">
+				${saus.naam}: 		
+				<c:forEach var="ingrediënt" items="${saus.ingrediënten}" varStatus="status">
+					<c:choose>
+						<c:when test="${status.first}">					
+							${ingrediënt}
+						</c:when>
+						<c:otherwise>
+							, ${ingrediënt}
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<br>
+				<img src="images/${saus.naam}.png" alt="${saus.naam}" title="${saus.naam}">
+			</li>	
+		</c:forEach>
+		</ul>
+		<input type="submit" value="Aangevinkte sauzen verwijderen">
+	</form>
 </body>
 </html>
