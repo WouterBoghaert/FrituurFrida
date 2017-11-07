@@ -62,6 +62,10 @@ input[type='checkbox'] {
 	display: inline;
 }
 
+input[type="submit"]{
+	display: inline;
+}
+
 nav ul {
 	background-color: red;
 	padding: 0.4em 0;
@@ -104,4 +108,14 @@ ul.zebra li:nth-child(even) {
 
 ul.zebra li:nth-child(odd):hover, ul.zebra li:nth-child(even):hover {
 	background-color: #ccff00;
+}
+
+.meisjes {
+	background-color: pink;
+	color: red;
+}
+
+.jongens {
+	background-color: lightblue;
+	color: blue;
 }
