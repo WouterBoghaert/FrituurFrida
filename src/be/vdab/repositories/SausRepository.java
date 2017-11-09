@@ -1,5 +1,6 @@
 package be.vdab.repositories;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.stream.Collectors;
 
 import be.vdab.entities.Saus;
 
-public class SausRepository {
+public class SausRepository implements Serializable {
+	private final static long serialVersionUID = 1L;
 	private final static Map<Long,Saus> SAUZEN = new ConcurrentHashMap<>();
 	static {
 		SAUZEN.put(1L, (new Saus(1L, "cocktail", Arrays.asList("ketchup","mayonaise","whisky"))));
@@ -31,5 +33,9 @@ public class SausRepository {
 	
 	public void removeById(long id) {
 		SAUZEN.remove(id);
+	}
+	
+	public Saus findById(long id) {
+		return SAUZEN.get(id);
 	}
 }

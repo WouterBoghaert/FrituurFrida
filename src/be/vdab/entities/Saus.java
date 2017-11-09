@@ -1,9 +1,11 @@
 package be.vdab.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Saus {
+public class Saus implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private long nummer;
 	private String naam;
 	private List<String> ingrediënten = new ArrayList<>();
