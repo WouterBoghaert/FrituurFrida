@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ZoekDeFrietRepository implements Serializable {
+public class ZoekDeFrietRepositoryVerkeerd implements Serializable {
 	// membervariabelen
 	
 	private static final long serialVersionUID = 1L;
@@ -12,7 +12,7 @@ public class ZoekDeFrietRepository implements Serializable {
 	
 	// constructor
 	
-	public ZoekDeFrietRepository() {
+	public ZoekDeFrietRepositoryVerkeerd() {
 		long friet = (long)(Math.random() * 7 + 1);
 		for(long i=1;i<=7;i++) {
 			if(i==friet) {
