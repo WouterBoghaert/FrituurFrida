@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import be.vdab.entities.Saus;
 import be.vdab.repositories.SausRepository;
 
-@WebServlet("/sauzen/ingrediënten.htm")
+@WebServlet("/sauzen/ingredienten.htm")
 public class IngrediëntServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static final String VIEW = "/WEB-INF/JSP/ingrediënt.jsp";
