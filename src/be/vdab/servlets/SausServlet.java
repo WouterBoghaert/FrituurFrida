@@ -2,6 +2,8 @@ package be.vdab.servlets;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -33,10 +35,11 @@ public class SausServlet extends HttpServlet {
     
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String [] ids= request.getParameterValues("id");
-		if(ids != null && ids.length != 0) {			
-			Arrays.stream(ids).forEach(id ->
-			sausRepository.removeById(Long.parseLong(id))); 
+		Set<Long> ids= Arrays.stream(request.getParameterValues("id")).map(id -> Long.parseLong(id)).collect(Collectors.toSet());
+		if(ids != null && ids.size() != 0) {			
+//			Arrays.stream(ids).forEach(id ->
+//			sausRepository.removeById(Long.parseLong(id))); 
+			sausRepository.removeByIds(ids);
 		}
 		response.sendRedirect(request.getContextPath() + REDIRECT_URL);
 	}

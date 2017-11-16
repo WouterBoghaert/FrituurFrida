@@ -2,10 +2,12 @@ package be.vdab.entities;
 
 import java.util.Scanner;
 
+import be.vdab.repositories.SausRepository;
+
 public class TestMain {
 
 	public static void main(String[] args) {
-		SausRadenSpel sausRadenSpel = new SausRadenSpel();
+		SausRadenSpel sausRadenSpel = new SausRadenSpel(new SausRepository().findAllSausNaam());
 		
 		System.out.println(sausRadenSpel.getOutput());
 		System.out.println(sausRadenSpel.getSausNaam());

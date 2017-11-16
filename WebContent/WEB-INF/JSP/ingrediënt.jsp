@@ -17,8 +17,8 @@
 		</form>
 		<c:if test="${not empty sauzenByIngrediënt}">
 			<ul class="zebra">
-				<c:forEach var="saus" items="${sauzenByIngrediënt}">
-					<li>${saus.naam}</li>
+				<c:forEach var="sausnaam" items="${sauzenByIngrediënt}">
+					<li>${sausnaam}</li>
 				</c:forEach>
 			</ul>
 		</c:if>

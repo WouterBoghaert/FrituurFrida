@@ -5,11 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
-import be.vdab.repositories.SausRepository;
-
 public class SausRadenSpel implements Serializable {
 	
 	// membervariabelen
@@ -17,19 +12,15 @@ public class SausRadenSpel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String output;
 	private final String sausNaam;
-	private final transient SausRepository sausRepository = new SausRepository();
 	private int aantalVerkeerd;
-	
-	@Resource (name = SausRepository.JNDI_NAME)
-	void setDataSource (DataSource dataSource) {
-		sausRepository.setDataSource(dataSource);
-	}
 	
 	// constructor
 	
-	public SausRadenSpel () {
-		int randomInt = new Random().nextInt((sausRepository.findAll().size()-1));
-		sausNaam = sausRepository.findAll().get(randomInt).getNaam();
+	public SausRadenSpel (List<String> sausNamen) {
+//		int randomInt = new Random().nextInt((sausRepository.findAll().size()-1));
+//		sausNaam = sausRepository.findAll().get(randomInt).getNaam();
+		int randomInt = new Random().nextInt((sausNamen.size()));
+		sausNaam = sausNamen.get(randomInt);
 		setOutput();
 		aantalVerkeerd = 0;
 	}

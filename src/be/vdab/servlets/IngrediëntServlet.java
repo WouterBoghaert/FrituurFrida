@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import be.vdab.entities.Saus;
 import be.vdab.repositories.SausRepository;
 
 @WebServlet("/sauzen/ingredienten.htm")
@@ -30,7 +29,7 @@ public class IngrediëntServlet extends HttpServlet {
     	if(request.getQueryString() != null) {
 	    	String ingrediënt = request.getParameter("ingrediënt");
 	    	if (ingrediënt != null && !ingrediënt.trim().isEmpty()) {
-	    		List<Saus> sauzenByIngrediënt = sausRepository.findByIngrediënt(ingrediënt);
+	    		List<String> sauzenByIngrediënt = sausRepository.findSausNaamByIngrediënt(ingrediënt);
 	    		if (!sauzenByIngrediënt.isEmpty()) {
 	    			request.setAttribute("sauzenByIngrediënt", sauzenByIngrediënt);
 	    		}
