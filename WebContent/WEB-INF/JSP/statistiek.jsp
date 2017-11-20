@@ -1,5 +1,6 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="vdab" uri="http://vdab.be/tags" %>
 <!doctype html>
 <html lang="nl">
 	<head>
@@ -13,7 +14,7 @@
 		</style>
 	</head>
 	<body>
-		<c:import url="/WEB-INF/JSP/menu.jsp"/>
+		<vdab:menu/>
 		<h1>Statistiek</h1>
 		<p>
 			Aantal bezoeken aan de Indexpagina: ${aantalIndex}<br>

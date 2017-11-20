@@ -1,6 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="vdab" uri="http://vdab.be/tags" %>
 <fmt:setBundle basename="resourceBundles.teksten"/>
 <!DOCTYPE html>
 <html lang="nl">
@@ -10,7 +11,7 @@
 	</c:import>
 </head>
 <body>
-	<c:import url="/WEB-INF/JSP/menu.jsp"/>
+	<vdab:menu/>
 	<h1><fmt:message key="titel"/></h1>
 <%-- 	<c:choose> --%>
 <%-- 		<c:when test='${openGesloten.equals("open")}'> --%>
