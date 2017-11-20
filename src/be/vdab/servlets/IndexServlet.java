@@ -3,6 +3,8 @@ package be.vdab.servlets;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Enumeration;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +25,18 @@ public class IndexServlet extends HttpServlet {
 	request.setAttribute("telefoonHelpdesk", this.getServletContext().getInitParameter("telefoonHelpdesk"));
 	request.setAttribute("adres", new Adres("Keizer Karelstraat", "100", new Gemeente("Gent", 9000)));
 	DayOfWeek vandaag = LocalDate.now().getDayOfWeek();
-	request.setAttribute("openGesloten", vandaag == DayOfWeek.MONDAY||vandaag == DayOfWeek.THURSDAY ? "gesloten" : "open");
+	Enumeration <Locale> locales = request.getLocales();
+	while (locales.hasMoreElements()) {
+		if(locales.nextElement().getLanguage().equals("en")) {
+			request.setAttribute("openGesloten", vandaag == DayOfWeek.MONDAY||vandaag == DayOfWeek.THURSDAY ? "closed" : "open");
+			request.setAttribute("openGeslotenFiguur", vandaag == DayOfWeek.MONDAY||vandaag == DayOfWeek.THURSDAY ? "gesloten_en" : "open_en");
+			break;
+		}
+		else {
+			request.setAttribute("openGesloten", vandaag == DayOfWeek.MONDAY||vandaag == DayOfWeek.THURSDAY ? "gesloten" : "open");
+			request.setAttribute("openGeslotenFiguur", vandaag == DayOfWeek.MONDAY||vandaag == DayOfWeek.THURSDAY ? "gesloten" : "open");
+		}
+	}
 	request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 }
