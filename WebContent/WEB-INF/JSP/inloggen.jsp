@@ -18,10 +18,10 @@
 		 	<input type="password" name="wachtwoord" required autofocus/><br>
 		 	<input type="submit" value="Inloggen" id="inlogKnop"/>
 		 </form>
-<!-- 		 <script> -->
-// 		 	document.getElementById("inlogForm").addEventListener("click", function(){
-// 		 		document.getElementById("inlogKnop").disabled = true;
-// 		 	});
-<!-- 		 </script> -->
+ 		 <script> 
+ 		 	document.getElementById("inlogForm").addEventListener("submit", function(){
+ 		 		document.getElementById("inlogKnop").disabled = true;
+ 		 	});
+ 		 </script>
 	</body>
 </html>

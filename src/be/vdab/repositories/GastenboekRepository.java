@@ -55,7 +55,7 @@ public class GastenboekRepository extends AbstractRepository {
 				statement.setTimestamp(1, java.sql.Timestamp.valueOf(datum));
 				statement.setString(2, naam);
 				statement.setString(3, bericht);
-				statement.execute();
+				statement.executeUpdate();
 				connection.commit();
 			}
 			catch(SQLException ex) {
@@ -72,14 +72,14 @@ public class GastenboekRepository extends AbstractRepository {
 			builder.setCharAt(builder.length()-1, ')');
 			
 			try(Connection connection = dataSource.getConnection();
-				PreparedStatement statement = connection.prepareStatement(VERWIJDEREN)) {
+				PreparedStatement statement = connection.prepareStatement(builder.toString())) {
 				connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 				connection.setAutoCommit(false);
 				int index = 0;
 				for (String id : ids) {
 					statement.setLong(++index, Long.parseLong(id));
 				}
-				statement.execute();
+				statement.executeUpdate();
 				connection.commit();
 			}
 			catch(SQLException ex) {

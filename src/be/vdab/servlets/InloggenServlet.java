@@ -31,14 +31,17 @@ public class InloggenServlet extends HttpServlet {
 			if(wachtwoord.equals(this.getServletContext().getInitParameter("wachtwoord"))) {
 				HttpSession session = request.getSession();
 				session.setAttribute("ingelogd", true);
-				response.sendRedirect(request.getContextPath() + REDIRECT_URL);
 			}
 			else {
 				fouten.put("wachtwoord", "Het ingevoerde wachtwoord is niet correct!");
 			}
 		}
-		request.setAttribute("fouten", fouten);
-		request.getRequestDispatcher(VIEW).forward(request, response);
+		if (fouten.isEmpty()) {
+			response.sendRedirect(request.getContextPath() + REDIRECT_URL);
+		}
+		else {
+			request.setAttribute("fouten", fouten);
+			request.getRequestDispatcher(VIEW).forward(request, response);
+		}
 	}
-
 }
