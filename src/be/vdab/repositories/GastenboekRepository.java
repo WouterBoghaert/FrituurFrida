@@ -85,8 +85,6 @@ public class GastenboekRepository extends AbstractRepository {
 			catch(SQLException ex) {
 				throw new RepositoryException(ex);
 			}
-		}
-		
+		}		
 	}
-
 }
