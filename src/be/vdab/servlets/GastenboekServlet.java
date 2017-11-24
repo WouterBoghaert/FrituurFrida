@@ -11,8 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import be.vdab.entities.GastenboekEntry;
 import be.vdab.repositories.GastenboekRepository;
 
 @WebServlet("/gastenboek.htm")
@@ -28,27 +30,40 @@ public class GastenboekServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("gastenboek", gastenboekRepository.findAll());
-		//request.setAttribute("showForm", request.getParameter("showForm"));		
+		if (request.getParameter("uitloggen") != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("ingelogd", false);
+		}		
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String, String> fouten = new HashMap<>();
-		String naam = request.getParameter("naam");
-		if (naam == null || naam.trim().isEmpty()) {
-			fouten.put("naam", "verplicht");
-		}
-		String bericht = request.getParameter("bericht");
-		if (bericht == null || bericht.trim().isEmpty()) {
-			fouten.put("bericht", "verplicht");
-		}
-		if (fouten.isEmpty()) {
-			gastenboekRepository.toevoegen(naam, bericht);
+		if (request.getParameter("verwijderen") != null) {
+			String [] ids = request.getParameterValues("id");
+			if (!(ids.length == 0)) {
+				gastenboekRepository.verwijderen(ids);
+			}
 			response.sendRedirect(request.getRequestURI());
 		}
-		else {
-			request.setAttribute("fouten", fouten);
-			request.getRequestDispatcher(VIEW).forward(request, response);
+		
+		if (request.getParameter("toevoegen") != null) {
+			Map<String, String> fouten = new HashMap<>();
+			String naam = request.getParameter("naam");
+			if (GastenboekEntry.isNaamValid(naam)) {
+				fouten.put("naam", "verplicht");
+			}
+			String bericht = request.getParameter("bericht");
+			if (GastenboekEntry.isBerichtValid(bericht)) {
+				fouten.put("bericht", "verplicht");
+			}
+			if (fouten.isEmpty()) {
+				gastenboekRepository.toevoegen(naam, bericht);
+				response.sendRedirect(request.getRequestURI());
+			}
+			else {
+				request.setAttribute("fouten", fouten);
+				request.getRequestDispatcher(VIEW).forward(request, response);
+			}
 		}
 	}
 	

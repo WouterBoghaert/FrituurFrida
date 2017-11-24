@@ -10,41 +10,43 @@ public class GastenboekEntry {
 	private String bericht;
 	
 	public GastenboekEntry(long id, LocalDateTime datum, String naam, String bericht) {
-		this.id = id;
+		if (isIdValid(id)){
+			this.id = id;
+		}
 		this.datum = datum;
-		this.naam = naam;
-		this.bericht = bericht;
+		if(isNaamValid(naam)) {
+			this.naam = naam;
+		}
+		if(isBerichtValid(bericht)) {
+			this.bericht = bericht;
+		}
 	}
 
+	public static boolean isNaamValid(String naam) {
+		return naam != null && !naam.trim().isEmpty();
+	}
+	
+	public static boolean isBerichtValid(String bericht) {
+		return bericht != null && !bericht.trim().isEmpty();
+	}
+	
+	public static boolean isIdValid(long id) {
+		return id > 0;
+	}
+	
 	public long getId() {
 		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public LocalDateTime getDatum() {
 		return datum;
 	}
 
-	public void setDatum(LocalDateTime datum) {
-		this.datum = datum;
-	}
-
 	public String getNaam() {
 		return naam;
-	}
-
-	public void setNaam(String naam) {
-		this.naam = naam;
 	}
 
 	public String getBericht() {
 		return bericht;
 	}
-
-	public void setBericht(String bericht) {
-		this.bericht = bericht;
-	}	
 }

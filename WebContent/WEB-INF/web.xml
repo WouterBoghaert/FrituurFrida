@@ -4,4 +4,8 @@
     <param-name>telefoonHelpdesk</param-name>
     <param-value>02/222.22.22</param-value>
   </context-param>
+  <context-param>
+  	<param-name>wachtwoord</param-name>
+  	<param-value>admin</param-value>
+  </context-param>
 </web-app>
